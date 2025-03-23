@@ -1,11 +1,11 @@
 import React from 'react';
-import { Menu } from 'antd';
+import {Layout } from 'antd';
 import styles from '../../styles/layout.module.css';
 import { FacebookFilled, InstagramFilled, TwitterCircleFilled } from '@ant-design/icons';
 
 const TopBar: React.FC = () => {
     return (
-        <Menu
+        <Layout
             className={styles.topBar}
         >
             <div
@@ -48,7 +48,7 @@ const TopBar: React.FC = () => {
 
 
 
-        </Menu>
+        </Layout>
     );
 };
 

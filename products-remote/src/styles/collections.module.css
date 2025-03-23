@@ -1,0 +1,42 @@
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  list-style-type: none;
+  color:rgb(133 133 133);
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: flex-start;
+  flex: 1 1 calc(25% - 20px); /* Varsayılan olarak 4 sütun */
+  box-shadow: 0px 0px 10px 0px #000000c0;
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+  
+}
+.categoryItem:hover {
+  scale: 1.02;
+  cursor: pointer;
+
+}
+@media (max-width: 1024px) {
+  .categoryItem {
+    flex: 1 1 calc(50% - 20px) !important; /* 3 sütun */
+  }
+}
+
+@media (max-width: 768px) {
+  .categoryItem {
+    flex: 1 1 calc(50% - 20px) !important; /* 2 sütun */
+  }
+}
+
+@media (max-width: 500px) {
+  .categoryItem {
+    flex: 1 1 100% !important; /* 1 sütun */
+  }
+}

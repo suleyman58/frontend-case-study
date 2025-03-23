@@ -4,7 +4,7 @@
     background-color: #141414;
     color: #919191;
     width: 100vw;
-    padding: 10px 10px;
+    padding: 20px;
 }
 
 .topBar a {
@@ -33,17 +33,17 @@
     text-decoration: none;
     margin: 0px 10px !important;
 }
+.navbar a:hover {
+    color: #948888 !important;
 
+}
 .navbar div {
     color: #dedede !important;
     padding: 0;
 
 }
     /* Üzerine gelindiğinde mavi renk */
-.navbar a:hover {
-    color: #948888 !important;
 
-}
 .middleMenu{
     display: flex;
     align-items: center;
@@ -63,19 +63,52 @@
     }
 }
 
+
+  
 .searchContainer {
-    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out,width 1s ease-in-out,;
     transform: translateX(0); /* Varsayılan konum */
     opacity: 1; /* Görünür */
     z-index: 1;
+    position: absolute;
+    left: 120px;
+
   }
   
   .searchContainer.hide {
     transform: translateX(-100%); /* Sola kaydır */
     opacity: 0; /* Görünmez */
+ 
   }
   
   .searchContainer.show {
     transform: translateX(0); /* Varsayılan konuma geri getir */
     opacity: 1; /* Görünür */
   }
+  @media (max-width: 1050px) {
+    .searchContainer {
+        width: 180px !important;
+        background-color: red;  /* Genişlik 80% olacak şekilde daralt */
+    }
+
+}
+@media (max-width: 950px) {
+    .searchContainer {
+        width: 130px !important;  /* Genişlik 80% olacak şekilde daralt */
+    }
+
+}
+@media (max-width: 500px) {
+    .searchContainer {
+        width: 180px !important;  /* Genişlik 80% olacak şekilde daralt */
+
+    }
+
+}
+@media (max-width: 400px) {
+    .searchContainer {
+        width: 130px !important;  /* Genişlik 80% olacak şekilde daralt */
+
+    }
+
+}

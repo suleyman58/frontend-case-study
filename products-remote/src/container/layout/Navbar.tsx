@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Menu, Space, Input, Button } from 'antd';
+import { Space, Input, Button, ConfigProvider, Layout } from 'antd';
 import styles from '../../styles/layout.module.css';
 import { BugTwoTone, MenuOutlined, SearchOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 
 
 const { Search } = Input;
 const Navbar: React.FC = () => {
-  const [isSearchActive, setIsSearchActive] = useState(true); // State tanımlandı
+  const [isSearchActive, setIsSearchActive] = useState(false); // State tanımlandı
 
   const handleSearchClick = () => {
     setIsSearchActive((prevState) => !prevState); // State'i tersine çevir
@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
   };
   console.log(isSearchActive)
   return (
-    <Menu
+    <Layout
       className={styles.navbar} >
       <div style={{
         display: 'flex',
@@ -30,32 +30,61 @@ const Navbar: React.FC = () => {
         }} >
           <a href="/"><MenuOutlined className={styles.menuIcon} /></a>
           <Button onClick={handleSearchClick} type="text">
-            <SearchOutlined style={{ fontSize: '16px', color:'white',zIndex:'5' }} />
+            <SearchOutlined style={{ fontSize: '16px', color: 'white', zIndex: '5' }} />
           </Button>
 
           <div className={`${styles.searchContainer} ${isSearchActive ? styles.show : styles.hide}`}>
-            <Space>
+            <Space
+            >
               <Space.Compact>
-                <Search placeholder="search... " allowClear />
+                <ConfigProvider
+                  theme={{
+                    components: {
+                      Button: {
+                        colorPrimary: '#00b96b',
+                      },
+                      Input: {
+                        colorPrimary: '#dedede',
+                        colorBgContainer: '#141414',
+                        colorText: 'white',
+                      }
+                    },
+                  }}
+                >
+                  <Search
+                    placeholder="search... "
+                    allowClear
+                  />
+                </ConfigProvider>
               </Space.Compact>
             </Space>
           </div>
+
         </div>
 
         {/* Orta Menü */}
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            width: '100%',
+
+          }}>
           <div className={styles.middleMenu} >
             <a href="/products">Products</a>
-            <a href="/">Collections</a>
+            <a href="/collections">Collections</a>
           </div>
 
           <div style={{ marginTop: '-10px' }}>
-            <a href="/products"><BugTwoTone style={{ fontSize: '25px' }} /></a>
+            <a href="/"><BugTwoTone style={{ fontSize: '25px',paddingTop:'5px' }} /></a>
           </div>
 
           <div className={styles.middleMenu}>
-            <a href="/">Accessories</a>
-            <a href="/">Gift Cards</a>
+            <a href="/accessories">Accessories</a>
+            <a href="/giftcards">Gift Cards</a>
           </div>
 
         </div>
@@ -66,13 +95,22 @@ const Navbar: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }} >
-          <a href="/"><UserOutlined style={{ fontSize: '16px' }} /></a>
-          <a href="/"><ShoppingCartOutlined style={{ fontSize: '16px' }} /> 12</a>
+          <a href="/profile"><UserOutlined style={{ fontSize: '16px' }} /></a>
+          <a href="/basket"
+            style={{
+              fontSize: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}>
+            <ShoppingCartOutlined style={{ fontSize: '16px' }} />
+            12
+          </a>
 
         </div>
       </div>
 
-    </Menu>
+    </Layout>
   );
 };
 

@@ -45,3 +45,14 @@ a {
     color-scheme: dark;
   }
 }
+.topbar{
+  display: flex;
+  align-items: center;
+  
+}
+@media (max-width: 768px) {
+  .topbar {
+      display: none !important;/* orta butonları görünmez yap */
+  }
+
+}
