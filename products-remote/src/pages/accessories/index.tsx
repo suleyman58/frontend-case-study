@@ -2,8 +2,12 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      Accesuaries page
+    <div style={{ margin: '15px',minHeight:'calc(100vh - 250px)' }}>
+      <strong > Accesuaries page</strong>
+      <p style={{fontSize:'0.8rem',paddingTop:'15px'}}>
+
+        This page has not been created yet.
+      </p>
     </div>
   )
 }

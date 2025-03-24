@@ -1,0 +1,80 @@
+.quantityButton {
+    padding: 5px 10px;
+    background-color: #1e1e1e;
+    border: 1px solid #dedede;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+}
+
+.quantityButton:hover {
+    background-color: #625d5d;
+    border: 1px solid #fffdfd;
+}
+
+.submitButton {
+    padding: 10px;
+    background-color: #4037c589;
+
+    border: 1px solid #dedede;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.submitButton:hover {
+    background-color: #4037c5;
+    border: 1px solid #fffdfd;
+}
+
+.basket-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: #dedede;
+    gap: 20px;
+    /* Bölümler arasında boşluk */
+    flex-wrap: wrap;
+    /* Dar ekranlarda alt alta geçişi sağlar */
+}
+
+.basket-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ekran genişliği 768px'den küçük olduğunda */
+@media (max-width: 768px) {
+    .basket-container {
+        flex-direction: column;
+        /* Alt alta geçiş */
+    }
+
+    .basket-section {
+        width: 100%;
+        /* Tam genişlik */
+        margin-bottom: 20px;
+        /* Bölümler arasında boşluk */
+    }
+}
+
+
+.htmlLabel {
+    
+    margin-bottom: 5px;
+}
+
+.htmlInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 10px 0px;
+}

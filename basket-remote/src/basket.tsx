@@ -1,43 +1,69 @@
+import React, { useEffect, useState } from 'react';
+import OrderInformation from './OrderInformation';
+import OrderSummary from './OrderSummary';
+import './styles/basket.css'; // CSS dosyasını ekliyoruz
 
-// import React from 'react';
+const Basket: React.FC<any> = ({ selectedProducts, addProduct, removeProduct }) => {
 
-// interface Product {
-//   id: number;
-//   name: string;
-//   price: number;
-// }
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    city: '',
+    district: '',
+    phone: '',
+    cardnumber:'',
+    cardholdername:'',
+    cardexpirationdate:'',
+    cardcvc:''
+  });
 
-// interface BasketProps {
-//   selectedProducts: Product[];
-// }
+  const [priceTotal, setPriceTotal] = useState({
+    subtotal: 0,
+    discount: 0,
+    shipping: 10,
+    discountedTotal: 0,
+  });
 
-// const Basket: React.FC<BasketProps> = ({ selectedProducts }) => {
-//   return (
-//     <div>
-//       <h1>Basket</h1>
-//       {selectedProducts.length === 0 ? (
-//         <p>No products in the basket</p>
-//       ) : (
-//         <ul>
-//           {selectedProducts.map((product) => (
-//             <li key={product.id}>
-//               {product.name} - ${product.price}
-//             </li>
-//           ))}
-//         </ul>
-//       )}
-//     </div>
-//   );
-// };
+  useEffect(() => {
+    const subtotal = selectedProducts.reduce((acc: number, product: any) => {
+      return acc + product.price * product.quantity;
+    }, 0);
 
-// export default Basket;
-import React from 'react';
+    const discount = subtotal * 0.05;
+    const shipping = 10;
+    const discountedTotal = subtotal - discount - shipping;
 
-const Basket: React.FC = () => {
+    setPriceTotal({ subtotal, discount, shipping, discountedTotal });
+  }, [selectedProducts]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form Data:', basket);
+    alert('Form submitted successfully!');
+  };
+  const [basket, setBasket] = useState({ formData, selectedProducts, priceTotal });
+
+  useEffect(() => {
+    setBasket({ formData, selectedProducts, priceTotal });
+  }, [formData, selectedProducts, priceTotal]);
+
+
   return (
-    <div>
-      <h1>Basket Module</h1>
-      <p>burası basketRemote.</p>
+    <div className="basket-container">
+      <div className="basket-section">
+        <OrderInformation formData={formData} setFormData={setFormData}  />
+      </div>
+      <div className="basket-section">
+        <OrderSummary 
+        selectedProducts={selectedProducts} 
+        addProduct={addProduct} 
+        removeProduct={removeProduct}
+        priceTotal={priceTotal}
+        handleSubmit={handleSubmit}
+         />
+      </div>
     </div>
   );
 };

@@ -10,13 +10,14 @@ import Link from 'next/link';
 const { Meta } = Card;
 
 const ProductList = (props: any) => {
-  const { onProductSelect } = props;
+  const { addToBasket } = props;
   const { data: products, error, isLoading } = useGetProductsQuery();
 
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading products</p>;
 
+  
   return (
     <div style={{ padding: '20px' }}>
       <h2>Product List</h2>
@@ -66,7 +67,7 @@ const ProductList = (props: any) => {
               <Button
                 type="text"
                 className={styles.addButton}
-                onClick={() => onProductSelect(product)}
+                onClick={() => addToBasket(product)}
               >
                 Add to card
               </Button>

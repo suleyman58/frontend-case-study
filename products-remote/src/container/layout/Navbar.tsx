@@ -5,14 +5,17 @@ import { BugTwoTone, MenuOutlined, SearchOutlined, ShoppingCartOutlined, UserOut
 
 
 const { Search } = Input;
-const Navbar: React.FC = () => {
+
+const Navbar: React.FC<any> = ({ selectedProducts }) => {
   const [isSearchActive, setIsSearchActive] = useState(false); // State tanımlandı
 
   const handleSearchClick = () => {
     setIsSearchActive((prevState) => !prevState); // State'i tersine çevir
     console.log('Search icon clicked!'); // Konsola mesaj yazdır
   };
-  console.log(isSearchActive)
+
+  const totalQuantity = selectedProducts.reduce((acc, product) => acc + product.quantity, 0);
+  console.log("navbardaki ürünler", totalQuantity)
   return (
     <Layout
       className={styles.navbar} >
@@ -79,7 +82,7 @@ const Navbar: React.FC = () => {
           </div>
 
           <div style={{ marginTop: '-10px' }}>
-            <a href="/"><BugTwoTone style={{ fontSize: '25px',paddingTop:'5px' }} /></a>
+            <a href="/"><BugTwoTone style={{ fontSize: '25px', paddingTop: '5px' }} /></a>
           </div>
 
           <div className={styles.middleMenu}>
@@ -103,8 +106,9 @@ const Navbar: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'space-between'
             }}>
-            <ShoppingCartOutlined style={{ fontSize: '16px' }} />
-            12
+            <ShoppingCartOutlined style={{ fontSize: '16px',paddingRight:'5px' }} />
+            <p style={{marginTop:'-2px'}}>  {totalQuantity}</p>
+           
           </a>
 
         </div>
