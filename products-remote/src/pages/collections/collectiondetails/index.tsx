@@ -7,7 +7,9 @@ import Link from 'next/link';
 import { store } from '@/container/redux/store';
 import { Provider } from 'react-redux';
 
-const CollectionDetailPage = ({ categoryName }: { categoryName: string }) => {
+
+  const CollectionDetailPage = (props: any) => {
+    const { addToBasket,categoryName } = props;
 
   const { data: products, isLoading, error } = useGetProductsQuery();
 console.log("categoryName",categoryName)
@@ -76,7 +78,7 @@ console.log("categoryName",categoryName)
               <Button
                 type="text"
                 className={styles.addButton}
-              // onClick={() => onProductSelect(product)}
+                onClick={() => addToBasket(product)}
               >
                 Add to card
               </Button>

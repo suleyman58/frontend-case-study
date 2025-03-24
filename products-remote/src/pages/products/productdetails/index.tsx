@@ -5,7 +5,10 @@ import styles from '../../../styles/product.module.css';
 import { Provider } from 'react-redux';
 import { store } from '@/container/redux/store';
 
-const ProductDetailPage = ({ productId }: { productId: string }) => {
+
+const ProductDetailPage = (props: any) => {
+  const { addToBasket,productId } = props;
+
   const { data: products, isLoading, error } = useGetProductsQuery();
 
   if (isLoading) return <p>Loading...</p>;
@@ -49,7 +52,7 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
         </div>
         <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
           <Button type="primary" className={styles.productDetailBuyButton}>Buy it now</Button>
-          <Button type="text" className={styles.productDetailBuyButton}>Add to card</Button>
+          <Button type="text" className={styles.productDetailBuyButton}    onClick={() => addToBasket(product)}>Add to card</Button>
         </div>
         <div style={{ marginBottom: '5px' }}>
           <Typography.Title level={3} style={{ color: '#dedede' }}>Description</Typography.Title>
